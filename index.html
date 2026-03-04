@@ -6,15 +6,17 @@
   <title>Laos in Bloom — March &amp; April 2026 Events &amp; Festivals</title>
   <meta name="description" content="Your guide to Laos festivals, cultural events, and outdoor adventures from March 14 to April 14, 2026 — including Lao New Year Pi Mai, Tak Bat, Kuang Si Falls, and more.">
 
-  <!-- Fonts -->
+  <!-- Fonts — Issue #8 (MEDIUM): preload reduces render-blocking impact -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
 
   <link rel="stylesheet" href="styles.css">
 
-  <!-- Canonical -->
-  <link rel="canonical" href="https://laos-events.example.com/">
+  <!-- Issue #4 (HIGH): corrected canonical URL -->
+  <link rel="canonical" href="https://laos-events.shellnode.lol/">
 </head>
 <body>
 
@@ -31,7 +33,8 @@
       <li><a href="#timeline">Events</a></li>
       <li><a href="#tips">Travel Tips</a></li>
     </ul>
-    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+    <!-- Issue #7 (MEDIUM): explicit type="button" prevents accidental form submit -->
+    <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </nav>
@@ -807,7 +810,7 @@
                   Reserve (Nam Kan National Park), accessible only by the world's longest ziplines.
                   The 3-day/2-night "Classic" tour (~USD $100/day) includes jungle trekking, birdwatching,
                   and a genuine possibility of seeing black-crested gibbons at dawn. All meals included.
-                  Book directly at gibbonexperience.org — slots fill weeks in advance during March–April.
+                  Book directly at <a href="https://www.gibbonexperience.org" target="_blank" rel="noopener noreferrer">gibbonexperience.org</a> — slots fill weeks in advance during March–April.
                   Huay Xai is accessible from Luang Prabang or across the border from Chiang Khong, Thailand.
                 </p>
               </div>

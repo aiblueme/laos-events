@@ -19,6 +19,9 @@
   --text-light:   #FEFAE0;
   --text-dark:    #1C1C1C;
   --text-mid:     #3D3022;
+  /* Tag-specific colours (Issue #13) */
+  --gold-warm:    #D4A853;
+  --green-sage:   #52796F;
 
   --shadow-card: 0 4px 20px rgba(27, 67, 50, 0.12);
   --shadow-lift:  0 8px 32px rgba(92, 61, 30, 0.22);
@@ -434,14 +437,14 @@ h1, h2, h3, h4 {
   border-radius: var(--radius-pill);
 }
 .tag-festival     { background: var(--gold);        color: var(--brown); }
-.tag-buddhist     { background: #D4A853;             color: var(--brown); }
-.tag-cultural     { background: #52796F;             color: white; }
-.tag-market       { background: var(--green-mid);    color: white; }
-.tag-nature       { background: var(--green-light);  color: var(--green-deep); }
-.tag-adventure    { background: var(--brown);        color: white; }
-.tag-holiday      { background: var(--green-deep);   color: var(--gold); }
-.tag-unesco       { background: #8B6440;             color: white; }
-.tag-daily        { background: var(--cream-dark);   color: var(--brown); }
+.tag-buddhist     { background: var(--gold-warm);   color: var(--brown); }
+.tag-cultural     { background: var(--green-sage);  color: white; }
+.tag-market       { background: var(--green-mid);   color: white; }
+.tag-nature       { background: var(--green-light); color: var(--green-deep); }
+.tag-adventure    { background: var(--brown);       color: white; }
+.tag-holiday      { background: var(--green-deep);  color: var(--gold); }
+.tag-unesco       { background: var(--brown-light); color: white; }
+.tag-daily        { background: var(--cream-dark);  color: var(--brown); }
 
 /* ── TIMELINE ───────────────────────────────────────────────── */
 .timeline-section {
@@ -560,6 +563,10 @@ h1, h2, h3, h4 {
   color: var(--text-light);
   margin-bottom: 0.3rem;
   line-height: 1.3;
+  /* Issue #1 (CRITICAL): prevent letter-by-letter wrap on mobile */
+  overflow-wrap: break-word;
+  word-break: break-word;
+  min-width: 0;
 }
 
 .timeline-card-meta .event-location-small {
@@ -730,7 +737,8 @@ h1, h2, h3, h4 {
   display: flex; flex-wrap: wrap; gap: 1rem;
   justify-content: space-between; align-items: center;
   font-size: 0.8rem;
-  opacity: 0.55;
+  /* Issue #6 (MEDIUM): was 0.55 → ~4.07:1 contrast; 0.72 → ~5.1:1 (WCAG AA pass) */
+  opacity: 0.72;
 }
 
 @media (max-width: 768px) {
@@ -740,6 +748,16 @@ h1, h2, h3, h4 {
 
 /* ── Image error / fallback ─────────────────────────────────── */
 img.img-error { opacity: 0; }
+
+/* Issue #2 (CRITICAL): CSS-level fallback colours for all image containers.
+   These show immediately before lazy images are fetched, so there is never
+   a blank-white box — only the intentional fallback colour. The JS error
+   handler provides an additional safety net for network failures. */
+.feature-card-img                       { background: var(--green-mid); }
+.feature-card[id="tak-bat"] .feature-card-img   { background: var(--green-deep); }
+.feature-card[id="plain-of-jars"] .feature-card-img { background: var(--brown); }
+.timeline-card-thumb                    { background: var(--green-mid); }
+.gallery-strip .gallery-item            { background: var(--green-mid); }
 
 /* ── Animations ─────────────────────────────────────────────── */
 @media (prefers-reduced-motion: no-preference) {
@@ -751,6 +769,46 @@ img.img-error { opacity: 0; }
   .fade-in.visible {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* ── Mobile refinements (≤480px) ────────────────────────────── */
+@media (max-width: 480px) {
+
+  /* Issue #1 (CRITICAL): timeline card header on very small screens.
+     Reduce thumb size, allow tag to wrap below title row. */
+  .timeline-card-header {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .timeline-card-thumb {
+    width: 64px;
+    height: 48px;
+  }
+  .timeline-card-meta {
+    /* Let meta take remaining width next to thumb */
+    flex: 1 1 calc(100% - 80px);
+  }
+  .timeline-card-meta-right {
+    /* Move tag + chevron to its own line, push to right */
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(116, 198, 157, 0.1);
+    padding-top: 0.5rem;
+    margin-top: 0.25rem;
+  }
+
+  /* Issue #12 (LOW): hero eyebrow wraps more cleanly */
+  .hero-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+  }
+
+  /* Issue #14 (LOW): hero focal point — bring temple tops into frame */
+  .hero-img {
+    object-position: center 40%;
   }
 }
 
