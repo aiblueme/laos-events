@@ -1,0 +1,13 @@
+services:
+  laos-events-app:
+    build: .
+    container_name: laos-events-app
+    restart: unless-stopped
+    ports:
+      - "8422:80"
+    networks:
+      - swag-network
+
+networks:
+  swag-network:
+    external: true
