@@ -38,6 +38,7 @@ Agent: Claude Code
 - [P3] images/thumbs and images/full in git repo (49MB) — consider .gitignore for large image dirs
 
 ## Done
+- [x] Add MIT LICENSE — 2026-03-10 — commit 92b63e2
 - [x] Dockerfile hardened (explicit COPY, nginx.conf, proper EXPOSE) — 2026-03-09
 - [x] nginx.conf created with full security/perf config — 2026-03-09
 - [x] .dockerignore created — 2026-03-09
