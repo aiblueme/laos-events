@@ -1,0 +1,16 @@
+.git
+.github
+.claude
+.gitignore
+README.md
+LICENSE
+*.md
+.env
+.env.*
+node_modules
+__pycache__
+.DS_Store
+.venv
+*.py
+requirements.txt
+images/raw

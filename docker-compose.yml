@@ -1,12 +1,22 @@
 services:
   laos-events-app:
     build: .
+    image: laos-events-app
     container_name: laos-events-app
     restart: unless-stopped
-    ports:
-      - "8422:80"
     networks:
       - swag-network
+    labels:
+      - "swag=enable"
+      - "swag_address=laos-events-app"
+      - "swag_port=80"
+      - "swag_url=laos-events.shellnode.lol"
+      - "homepage.instance=my-vps"
+      - "homepage.name=Laos Events"
+      - "homepage.group=Sites"
+      - "homepage.href=https://laos-events.shellnode.lol"
+      - "homepage.icon=mdi-calendar"
+      - "homepage.description=Laos in Bloom — March & April 2026 events"
 
 networks:
   swag-network:
