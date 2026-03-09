@@ -645,7 +645,7 @@ h1, h2, h3, h4 {
   font-size: 1.25rem;
 }
 
-.tip-text h4 {
+.tip-text h3 {
   font-size: 1rem;
   color: var(--green-deep);
   margin-bottom: 0.35rem;
